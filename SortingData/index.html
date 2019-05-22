@@ -1,0 +1,45 @@
+<html >
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script src="./script.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>    
+    <body ng-app='myModule'>
+        <div ng-controller='myController'>
+            <!-- Sort By:
+            <select ng-model='sortColumn'>
+                <option value='name'>Name ASC</option>
+                <option value='+dateOfBirth'>Date of Birth ASC</option>
+                <option value='+gender'>Gender ASC</option>
+                <option value='-salary'>Salary DESC</option>
+            </select>
+            <br><br> -->
+            <table>
+                <thead>
+                    <tr>
+                        <th ng-click='sortData("name")'>
+                            Name <div ng-class='getSortClass("name")'></div>
+                        </th>
+                        <th ng-click='sortData("dateOfBirth")'>
+                            Date Of Birth <div ng-class='getSortClass("dateOfBirth")'></div>
+                        </th>
+                        <th ng-click='sortData("gender")'>
+                            Gender <div ng-class='getSortClass("gender")'></div>
+                        </th>
+                        <th ng-click='sortData("salary")'>
+                            Salary <div ng-class='getSortClass("salary")'></div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='emp in employees | orderBy:sortColumn : reverseSort'>
+                        <td>{{emp.name}}</td>
+                        <td>{{emp.dateOfBirth | date:'dd/MM/yyyy'}}</td>
+                        <td>{{emp.gender}}</td>
+                        <td>{{emp.salary}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
