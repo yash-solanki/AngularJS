@@ -14,6 +14,9 @@
                 <option value='-salary'>Salary DESC</option>
             </select>
             <br><br> -->
+            Search: 
+            <input type="text" placeholder="Search Emp" ng-model="searchText">
+            <br><br>
             <table>
                 <thead>
                     <tr>
@@ -32,7 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat='emp in employees | orderBy:sortColumn : reverseSort'>
+                    <tr ng-repeat='emp in employees | orderBy:sortColumn : reverseSort | filter: searchText'>
                         <td>{{emp.name}}</td>
                         <td>{{emp.dateOfBirth | date:'dd/MM/yyyy'}}</td>
                         <td>{{emp.gender}}</td>
