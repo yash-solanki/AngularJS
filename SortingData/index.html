@@ -1,5 +1,6 @@
 <html >
     <head>
+        <title>Table Sorting</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
         <script src="./script.js"></script>
         <link rel="stylesheet" href="./style.css">
@@ -43,6 +44,39 @@
                     </tr>
                 </tbody>
             </table>
+
+            <br><br><br>
+
+            <markdown>
+                    # Hello World!
+                    - Zeppelin
+                    - That guy
+                    - Kronos
+            </markdown>
+
+            <br><br><br>
+            Search from json: 
+            <input type="text" placeholder="Search JSON" ng-model="searchJSON">
+            <br><br>
+            <table>
+                <thead>
+                    <tr>
+                        <th>userId</th>
+                        <th>id </th>
+                        <th>title</th>
+                        <th>completed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat='js in jsonData | filter: searchJSON'>
+                        <td>{{js.userId}}</td>
+                        <td>{{js.id}}</td>
+                        <td>{{js.title}}</td>
+                        <td>{{js.completed}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
     </body>
 </html>
