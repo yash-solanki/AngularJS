@@ -1,6 +1,27 @@
 let app = angular
             .module('myModule',[])
-            .controller('myController', function($scope) {
+            .directive('markdown', function() {
+                var converter = new Showdown.converter();
+                return {
+                    restrict: 'E',
+                    link: function(scope, element, attrs) {
+                        var htmlText = converter.makeHtml(element.text());
+                        element.html(htmlText);
+                    }
+                }
+            })
+            .controller('myController', function($scope , $http) {
+
+                // let jsonData = [];
+                $http.get("https://jsonplaceholder.typicode.com/todos")
+                    .then(function(response) {
+                    jsonData = response.data;
+                    console.log($scope.jsonData);
+                });
+                setTimeout(()=> {
+                    $scope.jsonData=jsonData;
+                },1000);
+                // $scope.jsonData=jsonData;
                 let employees = [
                     {
                         name: 'Yash',
@@ -31,6 +52,8 @@ let app = angular
                 $scope.sortColumn = 'name';
                 $scope.reverseSort = false;
 
+               //  $scope.jsonData = jsonData;
+
                 $scope.sortData = function (column) {
                     $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort : false
                     $scope.sortColumn = column;  
@@ -41,5 +64,16 @@ let app = angular
                         return $scope.reverseSort ? 'arrow-down' : 'arrow-up'
                     }
                     return '';
-                }
-            });
+                } 
+            }
+            // .directive('markDown', function() {
+            //     let converter = new Showdown.converter();
+            //     return {
+            //         restrict : 'E',
+            //         link: function(scope, element, attrs) {
+            //             let htmlText = converter.makeHtml(element.text());
+            //             element.html(htmlText);
+            //         }
+            //     }
+            // })
+        );
