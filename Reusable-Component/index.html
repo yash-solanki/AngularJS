@@ -1,0 +1,14 @@
+<html ng-app="myApp">
+    <head>
+        <title>Reusable Component</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script src="./app.js"></script>
+    </head>
+    <body ng-controller="myCtrl">
+        <h1>{{message}}</h1>
+
+        <div ng-repeat="student in students">
+            <student-dir data="student" data2="message"></student-dir>
+        </div>
+    </body>
+</html>
